@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;700&display=swap');
+
+// OVERRIDE BROWSER FONT-SIZE
+html {
+  font-size: 62.5%;
+}
+
+//SET FONT FAMILY
+$font-size-base: 1rem;
+$font-family-sora: 'Sora', sans-serif;
+$font-family-base: $font-family-sora;
+
+//SET HEADING FONT SIZE
+$h1-font-size: $font-size-base * 6;
+$h2-font-size: $font-size-base * 3.5;
+$h3-font-size: $font-size-base * 2.25;
+
+//SPACERS
+$spacer: 1rem;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    1: (
+      $spacer,
+    ),
+    2: (
+      $spacer * 1.25,
+    ),
+    3: $spacer * 1.5,
+    4: (
+      $spacer * 2.25,
+    ),
+    5: (
+      $spacer * 3.5,
+    ),
+    6: (
+      $spacer * 6,
+    ),
+  ),
+  $spacers
+);
+
+// COLORS
+
+$bluish: #5a49d5;
+$bluish-light: #7e71e6;
+$bluish-very-light: #bdb6f2;
+$bluish-white: #dedbf9;
+
+$purplish: #7935ba;
+$purplish-light: #a88ed4;
+$purplish-white: #d6c2ea;
+
+$greyish: #262938;
+$greyish-light: #515460;
+$greyish-very-light: #6d6f7a;
+$greyish-dark-whitish: #a8a9af;
+$greyish-whitish: #e9e9ec;
+
+$primary: $bluish;
+$primary-light: $bluish-light;
+$primary-very-light: $bluish-very-light;
+$primary-whitish: $bluish-white;
+
+$secondary: $purplish;
+$secondary-light: $purplish-light;
+$secondary-very-light: $purplish-white;
+
+$tertiary: $greyish;
+$tertiary-light: $greyish-light;
+$tertiary-very-light: $greyish-very-light;
+$tertiary-whitish-light: $greyish-dark-whitish;
+$tertiary-whitish: $greyish-whitish;
+
+$theme-colors: (
+  'primary': $primary,
+  'primary-light': $primary-light,
+  'primary-very-light': $primary-very-light,
+  'primary-whitish': $primary-whitish,
+  'secondary': $secondary,
+  'secondary-light': $secondary-light,
+  'secondary-very-light': $secondary-very-light,
+  'tertiary': $tertiary,
+  'tertiary-light': $tertiary-light,
+  'tertiary-very-light': $tertiary-very-light,
+  'tertiary-whitish-light': $tertiary-whitish-light,
+  'tertiary-whitish': $tertiary-whitish,
+);
+
+//FORM -LABEL
+$label-margin-bottom: 0.75rem;
+
+//FORM -INPUT
+
+$input-btn-padding-y: 1.25rem;
+$input-btn-padding-x: 1.75rem;
+$input-btn-font-family: inherit;
+$input-btn-font-size: 1.5rem;
+$input-bg: #f2f2f2;
+$input-color: #777;
+$custom-control-label-color: #a8a9af;
+$input-border-width: 0;
+$input-placeholder-color: rgb(182, 182, 182);
+
+//BUTTONS
+
+//large button
+$btn-padding-y-lg: 1.5rem;
+$btn-padding-x-lg: 4rem;
+$btn-font-size-lg: 1.6rem;
+$btn-line-height-lg: 1.7;
+$btn-border-radius-lg: 10rem;
+
+//normal button
+$btn-padding-y: 1.4rem;
+$btn-padding-x: 3rem;
+$btn-font-size: 1.6rem;
+$btn-line-height: 1;
+$btn-border-radius: 5rem;
+
+//GRADIENTS
+$enable-gradients: true;
+.label-font-size {
+  font-size: 1.6rem;
+}
+.form-input-custom {
+}
+@import '../node_modules//bootstrap/scss/bootstrap.scss';

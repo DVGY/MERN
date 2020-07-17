@@ -1,9 +1,16 @@
 import React from 'react';
-import './App.css';
+
+import LoginForm from './components/LoginForm/LoginForm';
 
 import Navbar from './components/navbar/NavBar';
+
 const App = () => {
-  return <Navbar />;
+  return (
+    <React.Fragment>
+      <Navbar />
+      <LoginForm />
+    </React.Fragment>
+  );
 };
 
 export default App;
