@@ -1,13 +1,13 @@
 import React from 'react';
 
-import './login-style.scss';
+import '../login-form/login-style.scss';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-const LoginForm = () => {
+const SignUpForm = () => {
   return (
     <Row className="min-vh-100">
       {/* Login Form*/}
@@ -18,7 +18,14 @@ const LoginForm = () => {
         className="my-auto "
       >
         <Form>
-          <h3 className="mb-5">LOG INTO YOUR ACCOUNT</h3>
+          <h3 className="mb-5">CREATE YOUR ACCOUNT</h3>
+          <Form.Group className="mb-4">
+            <Form.Label className="label-font-size">Your name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Frist Name Last Name"
+            ></Form.Control>
+          </Form.Group>
 
           <Form.Group className="mb-4">
             <Form.Label className="label-font-size">Email Address</Form.Label>
@@ -34,10 +41,19 @@ const LoginForm = () => {
               placeholder="*********"
             ></Form.Control>
           </Form.Group>
+          <Form.Group className="mb-4">
+            <Form.Label className="label-font-size">
+              Confirm Password
+            </Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="*********"
+            ></Form.Control>
+          </Form.Group>
 
           <Button type="submit" variant="tertiary">
             {' '}
-            LOGIN
+            SIGN UP
           </Button>
         </Form>
       </Col>
@@ -52,4 +68,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
