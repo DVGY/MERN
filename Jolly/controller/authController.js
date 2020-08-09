@@ -39,7 +39,7 @@ exports.signup = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(email);
+
     //1. Check if email and password exist
     if (!email || !password) {
       return res
@@ -48,7 +48,7 @@ exports.login = async (req, res, next) => {
     }
 
     // Check if user exist and password is correct
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select('+password -__v');
 
     if (!user || !(await user.correctPassword(password, user.password))) {
       return res
@@ -64,6 +64,7 @@ exports.login = async (req, res, next) => {
     // --- TO DO
     //1. Set res.cookie and it's httpOnly and secure
     //2. Remove hash Password from Postman output
+    user.password = undefined;
 
     res.status(200).json({ status: 'success', data: user, token });
   } catch (error) {
@@ -91,7 +92,6 @@ exports.protect = async (req, res, next) => {
 
     //2. verify token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    console.log(decoded);
     // 3) Check if user still exists
     const _id = decoded.payload;
     const currentUser = await User.findById(decoded.payload);

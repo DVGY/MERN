@@ -1,7 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const colors = require('colors');
+
+const userRoute = require('./routes/userRoute');
 
 dotenv.config({ path: './config.env' });
 
@@ -19,7 +20,7 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('DB connection successfull!'.yellow))
+  .then(() => console.log('\x1b[32m%s\x1b[0m', 'DB connection successfull!'))
   .catch((err) => console.log(err.message));
 
 const PORT = process.env.PORT || 5000;
@@ -34,7 +35,7 @@ app.use(express.json());
 //   next();
 // });
 
-app.use('/api/users', require('./routes/userRoute'));
+app.use('/api/users', userRoute);
 
 app.all('*', (req, res, next) => {
   console.log('Here 2');
@@ -45,5 +46,6 @@ app.all('*', (req, res, next) => {
   next();
 });
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`.yellow);
+  console.log('\n');
+  console.log(`\x1b[32mServer started on port ${PORT}\x1b[0m`);
 });

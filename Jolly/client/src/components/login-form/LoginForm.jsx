@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import './login-style.scss';
-import axios from 'axios';
+import { connect } from 'react-redux';
+
+import { loginUser } from '../../redux/auth/authActions';
 
 import FormValidation from '../../utils/FormValidation';
 import validationRules from '../../utils/loginValidationRules';
@@ -10,8 +11,13 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Alerts from '../alerts/Alerts';
 
-const LoginForm = () => {
+import { Redirect } from 'react-router-dom';
+
+import './login-style.scss';
+
+const LoginForm = ({ loginUser, isUserAuthenticated, error }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -33,21 +39,25 @@ const LoginForm = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log(email, password);
-    // console.log(event.currentTarget);
 
     const validation = formValidationRules.validate(formData);
     setFormValidation(validation);
-    console.log(validation);
-    axios
-      .post('api/users/login', {})
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.response));
+    if (validation.isValid) {
+      loginUser(email, password);
+    }
+    setFormData({
+      email: '',
+      password: '',
+    });
   };
+
+  if (isUserAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <Row className="min-vh-100">
       {/* Login Form*/}
-
+      {error && <Alerts {...error} showAlert={true} />}
       <Col
         xs={{ span: 8, offset: 2 }}
         md={{ span: 4, offset: 1 }}
@@ -93,7 +103,6 @@ const LoginForm = () => {
         </Form>
       </Col>
       {/* SVG */}
-
       <Col className="d-none d-md-flex flex-md-column justify-content-center bg--custom">
         <h2 className="text-center text-primary-whitish w-25 align-self-center motto--custom">
           CONNECT <span>&</span> SHARE
@@ -103,4 +112,12 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => ({
+  loginUser: (email, password) => dispatch(loginUser(email, password)),
+});
+const mapStateToProps = (state) => ({
+  isUserAuthenticated: state.auth.isUserAuthenticated,
+  error: state.auth.error,
+  currentUser: state.auth.currentUser,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

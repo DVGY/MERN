@@ -3,7 +3,6 @@ const User = require('../models/userModel');
 
 exports.getUser = async (req, res, next) => {
   try {
-    console.log(req.user);
     const user = await User.findById(req.user.id);
     res
       .status(200)
