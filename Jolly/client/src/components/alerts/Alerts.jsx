@@ -1,31 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 
 import Alert from 'react-bootstrap/Alert';
 
+import { connect } from 'react-redux';
+
 import './alerts-style.scss';
 
-const Alerts = ({ data, status, statusText }) => {
-  const [show, setShow] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShow(false);
-    }, 4000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
+const Alerts = ({ showAlert, alertMsg }) => {
   return (
     <Alert
       variant={'danger'}
       className="position-absolute alert-box"
-      show={show}
+      show={showAlert}
     >
-      <Alert.Heading>{data.msg}</Alert.Heading>
+      <Alert.Heading>{alertMsg}</Alert.Heading>
       {}
     </Alert>
   );
 };
 
-export default Alerts;
+const mapStateToProps = (state) => ({
+  alertMsg: state.alert.alertMsg,
+  showAlert: state.alert.showAlert,
+});
+export default connect(mapStateToProps)(Alerts);

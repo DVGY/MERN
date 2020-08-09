@@ -1,4 +1,7 @@
 import authTypes from './authTypes';
+
+import { autoToggleAlert } from '../alert/alertActions';
+
 import axios from 'axios';
 
 export const loginSuccess = (loginSuccessData) => ({
@@ -20,10 +23,10 @@ export const authError = (error) => ({
 export const loginUser = (email, password) => async (dispatch) => {
   const body = { email, password };
   try {
-    const response = await axios.post('api/users/login', { email, password });
-    console.log(response.data);
+    const response = await axios.post('api/users/login', body);
     dispatch(loginSuccess(response.data));
   } catch (error) {
     dispatch(authError(error.response));
+    dispatch(autoToggleAlert(error.response.data.msg));
   }
 };

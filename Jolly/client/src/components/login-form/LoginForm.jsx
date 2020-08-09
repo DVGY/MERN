@@ -22,8 +22,7 @@ const LoginForm = ({ loginUser, isUserAuthenticated, error }) => {
     email: '',
     password: '',
   });
-
-  // formValidation now points to newly created object and have all validationRulesArray
+  //formValidation now points to newly created object and have all validationRulesArray
   const formValidationRules = new FormValidation(validationRules);
 
   //Before submission we consider form to be valid state so return Generic Type Field with valid true
@@ -45,6 +44,7 @@ const LoginForm = ({ loginUser, isUserAuthenticated, error }) => {
     if (validation.isValid) {
       loginUser(email, password);
     }
+
     setFormData({
       email: '',
       password: '',
@@ -54,13 +54,14 @@ const LoginForm = ({ loginUser, isUserAuthenticated, error }) => {
   if (isUserAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
+  console.log('hahah');
   return (
-    <Row className="min-vh-100">
+    <Row className="min-vh-100 mx-0">
       {/* Login Form*/}
-      {error && <Alerts {...error} showAlert={true} />}
+      {error && <Alerts />}
       <Col
         xs={{ span: 8, offset: 2 }}
-        md={{ span: 4, offset: 1 }}
+        md={{ span: 5, offset: 1 }}
         lg={{ span: 3, offset: 1 }}
         className="my-auto "
       >
@@ -103,7 +104,7 @@ const LoginForm = ({ loginUser, isUserAuthenticated, error }) => {
         </Form>
       </Col>
       {/* SVG */}
-      <Col className="d-none d-md-flex flex-md-column justify-content-center bg--custom">
+      <Col className="d-none d-md-flex flex-md-column justify-content-center bg--custom pr-0">
         <h2 className="text-center text-primary-whitish w-25 align-self-center motto--custom">
           CONNECT <span>&</span> SHARE
         </h2>
