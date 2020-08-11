@@ -6,7 +6,6 @@ import SignUpForm from './components/sign-up-form/SignUpForm';
 import NotFound from './components/not-found/NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
-
 const App = () => {
   return (
     <React.Fragment>

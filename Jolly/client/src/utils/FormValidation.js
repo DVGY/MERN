@@ -5,21 +5,23 @@ class FormValidation {
     this.validationRules = validationRules;
   }
 
-  validate(formInputValueState) {
+  validate(formInputValue) {
     let validation = this.validationRuleFieldTypes();
 
     this.validationRules.forEach((validationRule) => {
       //if the isInvalid false, run and check validation using validator library
       if (!validation[validationRule.field].isInvalid) {
-        const fieldVal = formInputValueState[validationRule.field].toString();
+        const userInputToStr = formInputValue[validationRule.field].toString();
         const args = validationRule.args || [];
         const validationMethod =
           typeof validationRule.method === 'string'
             ? validator[validationRule.method]
             : validationRule.method;
 
+        console.log(validationMethod);
+
         if (
-          validationMethod(fieldVal, ...args, formInputValueState) !==
+          validationMethod(userInputToStr, ...args, formInputValue) !==
           validationRule.validWhen
         ) {
           validation[validationRule.field] = {
