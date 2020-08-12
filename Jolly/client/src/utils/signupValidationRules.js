@@ -24,6 +24,13 @@ const signupValidationRule = [
     message: 'Password is required',
   },
   {
+    field: 'password',
+    method: 'isLength',
+    args: [{ min: 8 }],
+    validWhen: true,
+    message: 'Password Length should be more than 8 characters',
+  },
+  {
     field: 'confirmPassword',
     method: 'isEmpty',
     validWhen: false,

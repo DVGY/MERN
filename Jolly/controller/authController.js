@@ -7,12 +7,13 @@ exports.signup = async (req, res, next) => {
   try {
     const { email, name, password, confirmPassword } = req.body;
 
-    const userExist = await User.findOne({ email });
+    const userExist = await User.findOne({ email }).select('+password -__v');
 
     if (userExist) {
-      return res
-        .status(201)
-        .json({ status: 'fail', msg: 'User already exist' });
+      return res.status(400).json({
+        status: 'fail',
+        msg: 'An account with this email already exists',
+      });
     }
 
     const newUser = await User.create({
@@ -21,6 +22,7 @@ exports.signup = async (req, res, next) => {
       password,
       confirmPassword,
     });
+
     const payload = newUser._id;
     const token = jwt.sign({ payload }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
@@ -28,8 +30,9 @@ exports.signup = async (req, res, next) => {
     // --- TO DO
     //1. Set res.cookie and it's httpOnly and secure
     //2. Remove hash Password from Postman output
-
-    res.status(200).json({ status: 'success', data: newUser, token });
+    newUser.password = undefined;
+    newUser.__v = undefined;
+    res.status(201).json({ status: 'success', data: newUser, token });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ status: 'fail', error: error.stack });

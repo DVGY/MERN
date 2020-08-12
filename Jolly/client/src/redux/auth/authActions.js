@@ -30,3 +30,16 @@ export const loginUser = (email, password) => async (dispatch) => {
     dispatch(autoToggleAlert(error.response.data.msg));
   }
 };
+/**Redux thunk will hear this */
+export const signupUser = (name, email, password, confirmPassword) => async (
+  dispatch
+) => {
+  const body = { name, email, password, confirmPassword };
+  try {
+    const response = await axios.post('api/users/signup', body);
+    dispatch(signUpSuccess(response.data));
+  } catch (error) {
+    dispatch(authError(error.response));
+    dispatch(autoToggleAlert(error.response.data.msg));
+  }
+};

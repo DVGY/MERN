@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import FormValidation from '../../utils/FormValidation';
 import validationRules from '../../utils/signupValidationRules';
 
+import { connect } from 'react-redux';
+
+import { signupUser } from '../../redux/auth/authActions';
+
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,7 +15,9 @@ import Button from 'react-bootstrap/Button';
 import '../login-form/login-style.scss';
 import { Redirect } from 'react-router-dom';
 
-const SignUpForm = () => {
+import Alerts from '../alerts/Alerts';
+
+const SignUpForm = ({ signupUser, isUserAuthenticated, error }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,25 +47,25 @@ const SignUpForm = () => {
     setFormValidation(validation);
 
     if (validation.isValid) {
-      console.log('valid');
-      // signupUser(name, email, password, confirmPassword);
+      signupUser(name, email, password, confirmPassword);
     }
 
-    // setFormData({
-    //   name: '',
-    //   email: '',
-    //   password: '',
-    //   confirmPassword: '',
-    // });
+    setFormData({
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
   };
 
-  // if (isUserAuthenticated) {
-  //   return <Redirect to="/dashboard" />;
-  // }
+  if (isUserAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Row className="min-vh-100 mx-0">
       {/* Login Form*/}
+      {error && <Alerts />}
       <Col
         xs={{ span: 8, offset: 2 }}
         md={{ span: 5, offset: 1 }}
@@ -148,5 +154,13 @@ const SignUpForm = () => {
     </Row>
   );
 };
-
-export default SignUpForm;
+const mapDispatchToProps = (dispatch) => ({
+  signupUser: (name, email, password, confirmPassword) =>
+    dispatch(signupUser(name, email, password, confirmPassword)),
+});
+const mapStateToProps = (state) => ({
+  isUserAuthenticated: state.auth.isUserAuthenticated,
+  error: state.auth.error,
+  currentUser: state.auth.currentUser,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
