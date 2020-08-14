@@ -18,8 +18,6 @@ class FormValidation {
             ? validator[validationRule.method]
             : validationRule.method;
 
-        console.log(validationMethod);
-
         if (
           validationMethod(userInputToStr, ...args, formInputValue) !==
           validationRule.validWhen
