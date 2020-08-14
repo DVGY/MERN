@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 const userRoute = require('./routes/userRoute');
 
@@ -34,7 +35,7 @@ app.use(express.json());
 //   // );
 //   next();
 // });
-
+app.use(cookieParser());
 app.use('/api/users', userRoute);
 
 app.all('*', (req, res, next) => {

@@ -1,4 +1,3 @@
-const express = require('express');
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
@@ -42,7 +41,7 @@ exports.signup = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    console.log(req.cookie);
     //1. Check if email and password exist
     if (!email || !password) {
       return res
@@ -67,6 +66,8 @@ exports.login = async (req, res, next) => {
     // --- TO DO
     //1. Set res.cookie and it's httpOnly and secure
     //2. Remove hash Password from Postman output
+    res.cookie('token', token, { httpsOnly: true });
+
     user.password = undefined;
 
     res.status(200).json({ status: 'success', data: user, token });

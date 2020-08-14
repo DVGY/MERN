@@ -54,7 +54,6 @@ const LoginForm = ({ loginUser, isUserAuthenticated, error }) => {
   if (isUserAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
-  console.log('hahah');
   return (
     <Row className="min-vh-100 mx-0">
       {/* Login Form*/}
