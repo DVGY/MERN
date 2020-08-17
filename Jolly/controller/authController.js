@@ -29,6 +29,7 @@ exports.signup = async (req, res, next) => {
     // --- TO DO
     //1. Set res.cookie and it's httpOnly and secure
     //2. Remove hash Password from Postman output
+    res.cookie('token', token, { httpsOnly: true });
     newUser.password = undefined;
     newUser.__v = undefined;
     res.status(201).json({ status: 'success', data: newUser, token });
@@ -41,7 +42,7 @@ exports.signup = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(req.cookie);
+    console.log(req.cookies);
     //1. Check if email and password exist
     if (!email || !password) {
       return res

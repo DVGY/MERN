@@ -10,7 +10,7 @@ const NotFoundSVG = (props) => {
       className={props.className}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="404_page_not_found_ (1) 1" clip-path="url(#clip0)">
+      <g id="404_page_not_found_ (1) 1">
         <path
           id="Vector"
           opacity="0.18"
@@ -152,7 +152,7 @@ const NotFoundSVG = (props) => {
           y2="191.89"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-opacity="0" />
+          <stop />
           <stop offset="0.99" />
         </linearGradient>
         <linearGradient
@@ -163,8 +163,8 @@ const NotFoundSVG = (props) => {
           y2="20839.7"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#606060" />
-          <stop offset="0.99" stop-color="#606060" />
+          <stop />
+          <stop offset="0.99" />
         </linearGradient>
         <linearGradient
           id="paint2_linear"
@@ -174,8 +174,8 @@ const NotFoundSVG = (props) => {
           y2="6788.99"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#606060" />
-          <stop offset="0.99" stop-color="#606060" />
+          <stop />
+          <stop offset="0.99" />
         </linearGradient>
         <linearGradient
           id="paint3_linear"
@@ -185,8 +185,8 @@ const NotFoundSVG = (props) => {
           y2="4446.67"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#606060" />
-          <stop offset="0.99" stop-color="#606060" />
+          <stop />
+          <stop offset="0.99" />
         </linearGradient>
         <linearGradient
           id="paint4_linear"
@@ -196,8 +196,8 @@ const NotFoundSVG = (props) => {
           y2="5006.88"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#606060" />
-          <stop offset="0.99" stop-color="#606060" />
+          <stop />
+          <stop offset="0.99" />
         </linearGradient>
         <linearGradient
           id="paint5_linear"

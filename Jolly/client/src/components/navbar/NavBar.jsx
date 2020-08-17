@@ -9,15 +9,17 @@ const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark">
       {/*Replace with logo */}
-      <Navbar.Brand href="#home">Jolly</Navbar.Brand>
+      <Navbar.Brand href="#home">
+        <h4>Jolly</h4>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link as={Link} to="/login">
-            Login
+            <h4>Login</h4>
           </Nav.Link>
           <Nav.Link as={Link} to="/signup">
-            Sign Up
+            <h4>Sign Up</h4>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

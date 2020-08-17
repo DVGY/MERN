@@ -14,6 +14,7 @@ $font-family-base: $font-family-sora;
 $h1-font-size: $font-size-base * 6;
 $h2-font-size: $font-size-base * 3.5;
 $h3-font-size: $font-size-base * 2.25;
+$h4-font-size: $font-size-base * 1.6;
 
 //SPACERS
 $spacer: 1rem;
@@ -120,11 +121,24 @@ $btn-font-size: 1.6rem;
 $btn-line-height: 1;
 $btn-border-radius: 5rem;
 
+// Navbar
+
+$navbar-padding-y: $spacer * 1.5;
+$navbar-padding-x: $spacer * 2.5;
 //GRADIENTS
 $enable-gradients: true;
 .label-font-size {
   font-size: 1.6rem;
 }
+
 .form-input-custom {
 }
 @import '../node_modules//bootstrap/scss/bootstrap.scss';
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}

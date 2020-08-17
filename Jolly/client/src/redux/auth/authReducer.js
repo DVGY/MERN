@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   currentUser: null,
   isUserAuthenticated: false,
   loading: true,
-  token: null,
   error: null,
 };
 
@@ -14,7 +13,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
     case authTypes.SIGNUP_SUCCESS:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: action.payload.data,
         isUserAuthenticated: true,
         loading: false,
         token: null,
