@@ -207,7 +207,7 @@ const NotFoundSVG = (props) => {
           y2="641.696"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-opacity="0" />
+          <stop />
           <stop offset="0.99" />
         </linearGradient>
         <linearGradient

@@ -4,8 +4,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 import { Link } from 'react-router-dom';
-
-const NavBar = () => {
+import { connect } from 'react-redux';
+const NavBar = ({ isUserAuthenticated }) => {
   return (
     <Navbar bg="dark" variant="dark">
       {/*Replace with logo */}
@@ -15,9 +15,15 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link as={Link} to="/login">
-            <h4>Login</h4>
-          </Nav.Link>
+          {(isUserAuthenticated && (
+            <Nav.Link as={Link} to="/login">
+              <h4>Logout</h4>
+            </Nav.Link>
+          )) || (
+            <Nav.Link as={Link} to="/login">
+              <h4>Login</h4>
+            </Nav.Link>
+          )}
           <Nav.Link as={Link} to="/signup">
             <h4>Sign Up</h4>
           </Nav.Link>
@@ -26,5 +32,7 @@ const NavBar = () => {
     </Navbar>
   );
 };
-
-export default NavBar;
+const mapStateToProps = (state) => ({
+  isUserAuthenticated: state.auth.isUserAuthenticated,
+});
+export default connect(mapStateToProps)(NavBar);
